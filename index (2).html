@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>አረቂ | Areki — Traditional Ethiopian Beverages</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+Ethiopic:wght@400;600;700&family=Noto+Sans+Ethiopic:wght@400;500;600&display=swap');
+
+:root {
+  --clay: #A8551E;
+  --clay-dark: #7A3D14;
+  --coffee: #2E1B12;
+  --parchment: #E8D8B8;
+  --parchment-light: #F3E9D2;
+  --gesho: #5B6E2E;
+  --gesho-dark: #3E4B1F;
+  --gold: #C9972B;
+  --cream-ink: #F8F1E1;
+  --font-display: 'Noto Serif Ethiopic', 'Noto Serif', serif;
+  --font-body: 'Noto Sans Ethiopic', 'Noto Sans', sans-serif;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  color: var(--cream-ink);
+  font-family: var(--font-body);
+  line-height: 1.6;
+  background-color: #0c0a08;
+  background-image:
+    radial-gradient(ellipse 55% 40% at 12% 15%, rgba(168,85,30,0.18), transparent 60%),
+    radial-gradient(ellipse 50% 45% at 85% 8%, rgba(201,151,43,0.16), transparent 60%),
+    radial-gradient(ellipse 60% 50% at 70% 85%, rgba(91,110,46,0.12), transparent 65%),
+    radial-gradient(ellipse 45% 40% at 20% 80%, rgba(122,61,20,0.16), transparent 60%),
+    radial-gradient(ellipse 40% 35% at 50% 45%, rgba(201,151,43,0.08), transparent 65%);
+  background-attachment: fixed;
+  background-size: cover;
+}
+img, svg { max-width: 100%; display: block; }
+a { color: inherit; text-decoration: none; cursor: pointer; }
+.wrap { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+
+header.site-header { position: sticky; top: 0; z-index: 50; background: var(--coffee); color: var(--cream-ink); border-bottom: 3px solid var(--gold); }
+.header-inner { display: flex; align-items: center; justify-content: space-between; padding: 14px 24px; max-width: 1100px; margin: 0 auto; }
+.brand { display: flex; align-items: center; gap: 10px; font-family: var(--font-display); font-size: 1.6rem; font-weight: 700; letter-spacing: 0.02em; }
+.brand svg { width: 34px; height: 34px; }
+.brand-badge { width: 30px !important; height: 30px !important; flex-shrink: 0; }
+.brand-text { display: flex; flex-direction: column; line-height: 1.15; }
+.brand-name { font-size: 1.6rem; }
+.brand-credit { font-family: var(--font-body); font-size: 0.62rem; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; color: var(--gold); opacity: 0.85; }
+nav.main-nav { display: flex; align-items: center; gap: 28px; font-size: 0.98rem; }
+nav.main-nav a { position: relative; padding: 4px 0; opacity: 0.88; }
+nav.main-nav a:hover { opacity: 1; }
+nav.main-nav a.active { opacity: 1; }
+nav.main-nav a.active::after { content: ""; position: absolute; left: 0; right: 0; bottom: -4px; height: 2px; background: var(--gold); }
+.lang-toggle { display: flex; border: 1px solid var(--gold); border-radius: 999px; overflow: hidden; font-size: 0.82rem; }
+.lang-toggle button { background: transparent; color: var(--cream-ink); border: none; padding: 6px 14px; cursor: pointer; font-family: var(--font-body); }
+.lang-toggle button.active { background: var(--gold); color: var(--coffee); font-weight: 600; }
+.menu-btn { display: none; background: none; border: none; color: var(--cream-ink); font-size: 1.6rem; cursor: pointer; }
+@media (max-width: 780px) {
+  nav.main-nav { display: none; }
+  .menu-btn { display: block; }
+  header.site-header.open nav.main-nav { display: flex; flex-direction: column; align-items: flex-start; gap: 16px; padding: 16px 24px 22px; background: var(--coffee); }
+}
+
+.leaf-divider { display: flex; align-items: center; justify-content: center; gap: 10px; margin: 8px 0; color: var(--gesho); }
+.leaf-divider svg { width: 18px; height: 18px; }
+.leaf-divider .line { height: 1px; width: 60px; background: var(--gesho); opacity: 0.5; }
+
+.hero { position: relative; background: var(--coffee); color: var(--cream-ink); overflow: hidden; }
+.hero-inner { max-width: 1100px; margin: 0 auto; padding: 90px 24px 70px; display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 40px; align-items: center; }
+.hero.compact .hero-inner, .hero.compact .wrap { padding-top: 70px; padding-bottom: 50px; }
+.hero .eyebrow { font-size: 0.85rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); margin-bottom: 14px; }
+.hero h1 { font-family: var(--font-display); font-size: clamp(2rem, 4.5vw, 3.6rem); line-height: 1.12; margin: 0 0 20px; }
+.hero p.lead { font-size: 1.12rem; color: var(--parchment); max-width: 46ch; margin-bottom: 32px; }
+.hero-art { position: relative; }
+.btn { display: inline-block; padding: 13px 30px; border-radius: 4px; font-weight: 600; font-size: 0.98rem; cursor: pointer; border: 2px solid var(--gold); }
+.btn-primary { background: var(--gold); color: var(--coffee); }
+.btn-primary:hover { background: #dba936; }
+.btn-outline { background: transparent; color: var(--cream-ink); margin-left: 14px; }
+.btn-outline:hover { background: rgba(255,255,255,0.08); }
+@media (max-width: 780px) {
+  .hero-inner { grid-template-columns: 1fr; padding-top: 50px; }
+  .hero-art { order: -1; max-width: 260px; margin: 0 auto; }
+}
+
+section { padding: 76px 0; }
+.section-title { font-family: var(--font-display); font-size: clamp(1.8rem, 3.4vw, 2.4rem); text-align: center; margin: 0 0 8px; }
+.section-sub { text-align: center; color: var(--parchment); max-width: 56ch; margin: 0 auto 48px; font-size: 1.02rem; }
+.light-section .section-title { color: var(--coffee); }
+.light-section .section-sub { color: var(--clay-dark); }
+
+.product-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 32px; }
+@media (max-width: 700px) { .product-grid { grid-template-columns: 1fr; } }
+.product-card { background: var(--cream-ink); border: 1px solid rgba(46,27,18,0.12); border-radius: 6px; overflow: hidden; display: flex; flex-direction: column; }
+.product-art { background: linear-gradient(160deg, var(--clay) 0%, var(--clay-dark) 100%); padding: 40px 20px; display: flex; align-items: center; justify-content: center; }
+.product-art svg { width: 140px; height: 140px; }
+.product-body { padding: 26px 28px 30px; flex: 1; display: flex; flex-direction: column; }
+.product-body h3 { font-family: var(--font-display); font-size: 1.5rem; margin: 0 0 4px; }
+.product-body .amharic-name { font-family: var(--font-display); color: var(--clay-dark); font-size: 1.1rem; margin-bottom: 12px; }
+.product-body p { color: #4a3826; margin-bottom: 18px; flex: 1; }
+.tag-row { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 14px; }
+.tag { font-size: 0.78rem; padding: 4px 10px; border-radius: 999px; background: rgba(91,110,46,0.12); color: var(--gesho-dark); border: 1px solid rgba(91,110,46,0.3); }
+
+.process-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; margin-top: 10px; }
+@media (max-width: 780px) { .process-row { grid-template-columns: repeat(2, 1fr); } }
+.process-step { text-align: center; }
+.process-step .mark { width: 56px; height: 56px; margin: 0 auto 14px; border-radius: 50%; border: 2px solid var(--gesho); display: flex; align-items: center; justify-content: center; }
+.process-step .mark svg { width: 26px; height: 26px; color: var(--gesho); }
+.process-step h4 { font-family: var(--font-display); margin: 0 0 6px; }
+.process-step p { font-size: 0.92rem; color: #4a3826; }
+
+.band { background: var(--gesho-dark); color: var(--cream-ink); }
+.band .wrap { padding: 60px 24px; text-align: center; }
+.band h2 { font-family: var(--font-display); font-size: 1.9rem; margin-bottom: 12px; }
+.band p { color: var(--parchment); max-width: 50ch; margin: 0 auto; }
+
+.split { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; align-items: center; }
+@media (max-width: 780px) { .split { grid-template-columns: 1fr; } }
+.split h2 { font-family: var(--font-display); font-size: 2rem; margin-top:0; }
+.quote-block { border-left: 3px solid var(--gold); padding-left: 22px; font-family: var(--font-display); font-size: 1.3rem; color: var(--gold); margin: 40px 0; }
+
+.values-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 26px; }
+@media (max-width: 780px) { .values-grid { grid-template-columns: 1fr; } }
+.value-card { background: var(--cream-ink); border: 1px solid rgba(46,27,18,0.12); border-radius: 6px; padding: 26px; }
+.value-card svg { width: 30px; height: 30px; color: var(--clay); margin-bottom: 12px; }
+.value-card h4 { font-family: var(--font-display); margin: 0 0 8px; }
+.value-card p { font-size: 0.92rem; color: #4a3826; margin: 0; }
+
+.contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; }
+@media (max-width: 780px) { .contact-grid { grid-template-columns: 1fr; } }
+.info-card { display: flex; gap: 14px; margin-bottom: 24px; }
+.info-card svg { width: 24px; height: 24px; color: var(--clay); flex-shrink: 0; margin-top: 2px; }
+.info-card h4 { margin: 0 0 4px; font-family: var(--font-display); }
+.info-card p { margin: 0; color: var(--parchment); }
+form.contact-form { display: flex; flex-direction: column; gap: 16px; }
+form.contact-form label { font-size: 0.88rem; font-weight: 600; color: var(--clay-dark); }
+form.contact-form input, form.contact-form textarea { width: 100%; padding: 12px 14px; border: 1px solid rgba(46,27,18,0.25); border-radius: 4px; font-family: var(--font-body); font-size: 0.98rem; background: var(--cream-ink); color: var(--coffee); }
+form.contact-form textarea { min-height: 120px; resize: vertical; }
+form.contact-form button { align-self: flex-start; }
+.form-note { font-size: 0.85rem; color: var(--gold); margin-top: 4px; }
+
+footer { background: var(--coffee); color: var(--parchment); padding: 44px 0 26px; }
+footer .footer-inner { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 24px; margin-bottom: 24px; }
+footer .footer-brand { font-family: var(--font-display); font-size: 1.3rem; color: var(--cream-ink); }
+footer nav { display: flex; gap: 22px; font-size: 0.92rem; }
+footer .bottom { border-top: 1px solid rgba(255,255,255,0.15); padding-top: 18px; font-size: 0.82rem; color: rgba(248,241,225,0.6); text-align: center; }
+
+[data-lang="am"] { display: none; }
+body.lang-am [data-lang="en"] { display: none; }
+body.lang-am [data-lang="am"] { display: initial; }
+body.lang-am [data-lang="am"].block { display: block; }
+body.lang-am [data-lang="am"].flex { display: flex; }
+[data-lang="en"].block { display: block; }
+[data-lang="en"].flex { display: flex; }
+
+.page { display: none; }
+.page.active-page { display: block; }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="header-inner">
+    <a class="brand" href="#" data-nav="home">
+      <svg class="brand-badge" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="24" cy="24" r="22" fill="#2E1B12" stroke="#C9972B" stroke-width="2"/>
+        <circle cx="24" cy="24" r="17" fill="none" stroke="#C9972B" stroke-width="0.75" opacity="0.6"/>
+        <text x="24" y="31" text-anchor="middle" font-family="'Noto Serif Ethiopic', serif" font-size="20" font-weight="700" fill="#C9972B">Y</text>
+      </svg>
+      <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M18 6h12l2 8-3 3v19a3 3 0 0 1-3 3h-7a3 3 0 0 1-3-3V17l-3-3 2-8Z" stroke="#C9972B" stroke-width="2.2" stroke-linejoin="round"/>
+        <path d="M17 20h14" stroke="#C9972B" stroke-width="2.2"/>
+      </svg>
+      <span class="brand-text">
+        <span class="brand-name"><span data-lang="en">Areki</span><span data-lang="am">አረቂ</span></span>
+        <span class="brand-credit">by Yehenew</span>
+      </span>
+    </a>
+    <nav class="main-nav">
+      <a href="#" data-nav="home" class="nav-link active"><span data-lang="en">Home</span><span data-lang="am">መነሻ</span></a>
+      <a href="#" data-nav="products" class="nav-link"><span data-lang="en">Products &amp; About</span><span data-lang="am">ምርቶች እና ስለ እኛ</span></a>
+      <a href="#" data-nav="contact" class="nav-link"><span data-lang="en">Contact</span><span data-lang="am">አግኙን</span></a>
+      <div class="lang-toggle">
+        <button data-set-lang="en" class="active">EN</button>
+        <button data-set-lang="am">አማ</button>
+      </div>
+    </nav>
+    <button class="menu-btn" aria-label="Menu">☰</button>
+  </div>
+</header>
+
+<!-- ================= HOME ================= -->
+<main id="page-home" class="page active-page">
+
+<section class="hero">
+  <div class="hero-inner">
+    <div>
+      <div class="eyebrow"><span data-lang="en">Distilled &amp; brewed the old way</span><span data-lang="am">በባህላዊ መንገድ የተጠመቀ</span></div>
+      <h1><span data-lang="en">Dembecha spirit,<br>poured by hand.</span><span data-lang="am">የደምበጫ መንፈስ፣<br>በእጅ የተቀዳ።</span></h1>
+      <p class="lead" data-lang="en">Areki sells Areki and Tella made the way our grandmothers made them — grain, gesho leaves, patience, and time. No shortcuts, no additives.</p>
+      <p class="lead" data-lang="am">አረቂ ንግድ ድርጅት፣ አረቂ እና ጠላ በአያቶቻችን ስልት ያዘጋጃል — እህል፣ ጌሾ፣ ትዕግስት እና ጊዜ። ያለ ምንም አቋራጭ መንገድ ወይም ተጨማሪ ንጥረ ነገር።</p>
+      <a href="#" data-nav="products" class="btn btn-primary nav-link"><span data-lang="en">See our drinks</span><span data-lang="am">መጠጦቻችንን ይመልከቱ</span></a>
+      <a href="#" data-nav="products" class="btn btn-outline nav-link"><span data-lang="en">Our story</span><span data-lang="am">ታሪካችን</span></a>
+    </div>
+    <div class="hero-art">
+      <svg viewBox="0 0 320 340" xmlns="http://www.w3.org/2000/svg">
+        <ellipse cx="160" cy="320" rx="110" ry="14" fill="#00000030"/>
+        <path d="M120 40h80l14 46-16 18v170a18 18 0 0 1-18 18h-56a18 18 0 0 1-18-18V104l-16-18 14-46Z" fill="#A8551E" stroke="#7A3D14" stroke-width="3"/>
+        <path d="M112 108h96" stroke="#7A3D14" stroke-width="3"/>
+        <path d="M124 150c14 10 28 10 42 0s28-10 42 0v90c-14-10-28-10-42 0s-28 10-42 0v-90Z" fill="#C9972B" opacity="0.55"/>
+        <rect x="140" y="20" width="40" height="24" rx="4" fill="#7A3D14"/>
+        <ellipse cx="160" cy="20" rx="20" ry="7" fill="#5B6E2E"/>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2 class="section-title"><span data-lang="en">Two drinks, one tradition</span><span data-lang="am">ሁለት መጠጦች፣ አንድ ባህል</span></h2>
+    <p class="section-sub" data-lang="en">Every bottle of Areki and every jug of Tella carries the same idea: honest ingredients, brewed slowly, shared generously.</p>
+    <p class="section-sub" data-lang="am">እያንዳንዱ ጠርሙስ አረቂ እና እያንዳንዱ ማድጋ ጠላ አንድ ዓይነት ሀሳብ ይይዛሉ፦ ንጹህ ግብዓት፣ ቀስ ብሎ የተጠመቀ፣ በልግስና የሚካፈል።</p>
+
+    <div class="product-grid">
+      <div class="product-card">
+        <div class="product-art">
+          <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+            <ellipse cx="100" cy="158" rx="72" ry="10" fill="#2E1B12" opacity="0.3"/>
+            <path d="M92 38h16v14l6 8v70a8 8 0 0 1-8 8H94a8 8 0 0 1-8-8V60l6-8V38Z" fill="#F3E9D2" stroke="#2E1B12" stroke-width="3"/>
+            <path d="M86 88h28v40a8 8 0 0 1-8 8H94a8 8 0 0 1-8-8V88Z" fill="#C9972B" opacity="0.6"/>
+            <rect x="90" y="32" width="20" height="8" rx="2" fill="#2E1B12"/>
+            <path d="M48 106h26l-3 42a3 3 0 0 1-3 3H54a3 3 0 0 1-3-3l-3-42Z" fill="#F3E9D2" stroke="#2E1B12" stroke-width="2.5"/>
+            <path d="M50 122h22l-2 24a2 2 0 0 1-2 2H54a2 2 0 0 1-2-2l-2-24Z" fill="#C9972B" opacity="0.7"/>
+            <path d="M126 106h26l-3 42a3 3 0 0 1-3 3h-14a3 3 0 0 1-3-3l-3-42Z" fill="#F3E9D2" stroke="#2E1B12" stroke-width="2.5"/>
+            <path d="M128 122h22l-2 24a2 2 0 0 1-2 2h-14a2 2 0 0 1-2-2l-2-24Z" fill="#C9972B" opacity="0.7"/>
+          </svg>
+        </div>
+        <div class="product-body">
+          <h3 data-lang="en">Areki</h3>
+          <h3 data-lang="am" class="amharic-name">አረቂ</h3>
+          <p data-lang="en">A clear, potent grain spirit, triple-distilled in clay stills. Sharp, warming, and traditionally shared at celebrations.</p>
+          <p data-lang="am">ንፁህ እና ጠንካራ የእህል መጠጥ፣ በሸክላ ማንቆርቆሪያ ሦስት ጊዜ የተጠመቀ። በበዓላት ላይ የሚካፈል ሙቀት ያለው መጠጥ።</p>
+          <div class="tag-row">
+            <span class="tag" data-lang="en">Distilled</span><span class="tag" data-lang="am">የተጠመቀ</span>
+            <span class="tag" data-lang="en">High-proof</span><span class="tag" data-lang="am">ከፍተኛ መጠን</span>
+          </div>
+          <a href="#" data-nav="products" class="btn btn-outline nav-link" style="color:var(--coffee);border-color:var(--clay);margin-left:0;"><span data-lang="en">Learn more</span><span data-lang="am">ተጨማሪ ይመልከቱ</span></a>
+        </div>
+      </div>
+
+      <div class="product-card">
+        <div class="product-art">
+          <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+            <path d="M91 34h18l3 18H88l3-18Z" fill="#F3E9D2" stroke="#2E1B12" stroke-width="3"/>
+            <ellipse cx="100" cy="34" rx="15" ry="6" fill="#C9972B" stroke="#2E1B12" stroke-width="2.5"/>
+            <path d="M87 34c5 3 21 3 26 0" stroke="#2E1B12" stroke-width="1.6" fill="none" opacity="0.7"/>
+            <path d="M112 52c24 12 36 34 36 56a48 48 0 0 1-96 0c0-22 12-44 36-56Z" fill="#F3E9D2" stroke="#2E1B12" stroke-width="3"/>
+            <path d="M60 116a40 40 0 0 0 80 0" stroke="#2E1B12" stroke-width="2" fill="none" opacity="0.45"/>
+            <path d="M150 140c13 5 20-2 19-15-2-11-13-16-20-12 5 7 6 18 1 27Z" fill="#A8551E" stroke="#2E1B12" stroke-width="2"/>
+          </svg>
+        </div>
+        <div class="product-body">
+          <h3 data-lang="en">Tella</h3>
+          <h3 data-lang="am" class="amharic-name">ጠላ</h3>
+          <p data-lang="en">A lightly fermented barley beer flavored with gesho leaves. Earthy, slightly bitter, and lower in alcohol than Areki.</p>
+          <p data-lang="am">በጌሾ ቅጠል የተጣፈ ለስላሳ የገብስ ቢራ። ትንሽ መራራ ጣዕም ያለው፣ ከአረቂ ያነሰ አልኮል የያዘ።</p>
+          <div class="tag-row">
+            <span class="tag" data-lang="en">Fermented</span><span class="tag" data-lang="am">የቦካ</span>
+            <span class="tag" data-lang="en">Light &amp; earthy</span><span class="tag" data-lang="am">ቀላል መጠጥ</span>
+          </div>
+          <a href="#" data-nav="products" class="btn btn-outline nav-link" style="color:var(--coffee);border-color:var(--clay);margin-left:0;"><span data-lang="en">Learn more</span><span data-lang="am">ተጨማሪ ይመልከቱ</span></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="light-section" style="background:var(--parchment);color:var(--coffee);">
+  <div class="wrap">
+    <h2 class="section-title"><span data-lang="en">From grain to glass</span><span data-lang="am">ከእህል እስከ ብርጭቆ</span></h2>
+    <p class="section-sub" data-lang="en">The same four steps have made Areki and Tella for generations.</p>
+    <p class="section-sub" data-lang="am">ለብዙ ትውልዶች አረቂና ጠላ የተዘጋጁት በእነዚህ አራት ደረጃዎች ነው።</p>
+
+    <div class="process-row">
+      <div class="process-step">
+        <div class="mark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3c-3 3-3 8 0 11 3-3 3-8 0-11Z"/><path d="M12 14v7"/></svg></div>
+        <h4 data-lang="en">Gather</h4><h4 data-lang="am">መሰብሰብ</h4>
+        <p data-lang="en">Grain and gesho leaves, sourced locally.</p>
+        <p data-lang="am">እህልና ጌሾ ከአካባቢ ይሰበሰባል።</p>
+      </div>
+      <div class="process-step">
+        <div class="mark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="14" r="7"/><path d="M9 3h6l-1 5H10L9 3Z"/></svg></div>
+        <h4 data-lang="en">Ferment</h4><h4 data-lang="am">ማብቀል</h4>
+        <p data-lang="en">Left to work in clay vessels for days.</p>
+        <p data-lang="am">ለቀናት በሸክላ ዕቃ ውስጥ ይቦካል።</p>
+      </div>
+      <div class="process-step">
+        <div class="mark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 18c0-6 4-6 4-11 0 5 4 5 4 11a4 4 0 0 1-8 0Z"/><path d="M12 20h8"/></svg></div>
+        <h4 data-lang="en">Distill / Brew</h4><h4 data-lang="am">መጥመቅ / ማብሰል</h4>
+        <p data-lang="en">Slow heat, clay stills, careful hands.</p>
+        <p data-lang="am">ቀስ ያለ ሙቀት፣ ሸክላ ማንቆርቆሪያ፣ የተጠነቀቀ እጅ።</p>
+      </div>
+      <div class="process-step">
+        <div class="mark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 3h12l-2 12a4 4 0 0 1-4 3.4A4 4 0 0 1 8 15L6 3Z"/><path d="M9 21h6"/></svg></div>
+        <h4 data-lang="en">Share</h4><h4 data-lang="am">መጋራት</h4>
+        <p data-lang="en">Poured at gatherings, holidays, and home.</p>
+        <p data-lang="am">በስብሰባ፣ በበዓላትና በቤት ውስጥ ይቀርባል።</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="band">
+  <div class="wrap">
+    <h2 data-lang="en">Taste something that hasn't changed in generations.</h2>
+    <h2 data-lang="am">ለብዙ ትውልዶች ያልተለወጠ ጣዕም ይቅመሱ።</h2>
+    <p data-lang="en">Reach out to order Areki or Tella for your next gathering.</p>
+    <p data-lang="am">ለቀጣይ ስብሰባዎ አረቂ ወይም ጠላ ለማዘዝ ያግኙን።</p>
+    <br>
+    <a href="#" data-nav="contact" class="btn btn-primary nav-link" style="border-color:var(--cream-ink);"><span data-lang="en">Get in touch</span><span data-lang="am">ያግኙን</span></a>
+  </div>
+</div>
+
+</main>
+
+<!-- ================= PRODUCTS ================= -->
+<main id="page-products" class="page">
+
+<section class="hero compact">
+  <div class="wrap">
+    <div class="eyebrow"><span data-lang="en">What we make</span><span data-lang="am">የምናዘጋጃቸው መጠጦች</span></div>
+    <h1 style="font-size:clamp(2rem,4vw,2.8rem);"><span data-lang="en">Areki &amp; Tella</span><span data-lang="am">አረቂ እና ጠላ</span></h1>
+    <p class="lead" data-lang="en">Two traditional Ethiopian beverages, made in small batches using recipes passed down through family.</p>
+    <p class="lead" data-lang="am">ሁለት ባህላዊ የኢትዮጵያ መጠጦች፣ በቤተሰብ የተላለፉ የምግብ አዘገጃጀት ዘዴዎችን በመጠቀም በትንሽ መጠን የሚዘጋጁ።</p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="product-grid">
+      <div class="product-card">
+        <div class="product-art">
+          <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+            <ellipse cx="100" cy="158" rx="72" ry="10" fill="#2E1B12" opacity="0.3"/>
+            <path d="M92 38h16v14l6 8v70a8 8 0 0 1-8 8H94a8 8 0 0 1-8-8V60l6-8V38Z" fill="#F3E9D2" stroke="#2E1B12" stroke-width="3"/>
+            <path d="M86 88h28v40a8 8 0 0 1-8 8H94a8 8 0 0 1-8-8V88Z" fill="#C9972B" opacity="0.6"/>
+            <rect x="90" y="32" width="20" height="8" rx="2" fill="#2E1B12"/>
+            <path d="M48 106h26l-3 42a3 3 0 0 1-3 3H54a3 3 0 0 1-3-3l-3-42Z" fill="#F3E9D2" stroke="#2E1B12" stroke-width="2.5"/>
+            <path d="M50 122h22l-2 24a2 2 0 0 1-2 2H54a2 2 0 0 1-2-2l-2-24Z" fill="#C9972B" opacity="0.7"/>
+            <path d="M126 106h26l-3 42a3 3 0 0 1-3 3h-14a3 3 0 0 1-3-3l-3-42Z" fill="#F3E9D2" stroke="#2E1B12" stroke-width="2.5"/>
+            <path d="M128 122h22l-2 24a2 2 0 0 1-2 2h-14a2 2 0 0 1-2-2l-2-24Z" fill="#C9972B" opacity="0.7"/>
+          </svg>
+        </div>
+        <div class="product-body">
+          <h3 data-lang="en">Areki</h3>
+          <h3 data-lang="am" class="amharic-name">አረቂ</h3>
+          <p data-lang="en">Our Areki is triple-distilled from fermented grain in traditional clay stills. It's clear, strong, and unmistakably Ethiopian — the drink poured at weddings, holidays, and moments worth marking.</p>
+          <p data-lang="am">አረቂያችን ከቦካ እህል በባህላዊ ሸክላ ማንቆርቆሪያ ሦስት ጊዜ ይጠመቃል። ንፁህ፣ ጠንካራ እና እውነተኛ ኢትዮጵያዊ ጣዕም ያለው — በሰርግ፣ በበዓላትና በልዩ ጊዜያት የሚቀርብ መጠጥ።</p>
+          <div class="tag-row">
+            <span class="tag" data-lang="en">Triple-distilled</span><span class="tag" data-lang="am">ሦስት ጊዜ የተጠመቀ</span>
+            <span class="tag" data-lang="en">No additives</span><span class="tag" data-lang="am">ያለ ተጨማሪ ንጥረ ነገር</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="product-card">
+        <div class="product-art">
+          <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+            <path d="M91 34h18l3 18H88l3-18Z" fill="#F3E9D2" stroke="#2E1B12" stroke-width="3"/>
+            <ellipse cx="100" cy="34" rx="15" ry="6" fill="#C9972B" stroke="#2E1B12" stroke-width="2.5"/>
+            <path d="M87 34c5 3 21 3 26 0" stroke="#2E1B12" stroke-width="1.6" fill="none" opacity="0.7"/>
+            <path d="M112 52c24 12 36 34 36 56a48 48 0 0 1-96 0c0-22 12-44 36-56Z" fill="#F3E9D2" stroke="#2E1B12" stroke-width="3"/>
+            <path d="M60 116a40 40 0 0 0 80 0" stroke="#2E1B12" stroke-width="2" fill="none" opacity="0.45"/>
+            <path d="M150 140c13 5 20-2 19-15-2-11-13-16-20-12 5 7 6 18 1 27Z" fill="#A8551E" stroke="#2E1B12" stroke-width="2"/>
+          </svg>
+        </div>
+        <div class="product-body">
+          <h3 data-lang="en">Tella</h3>
+          <h3 data-lang="am" class="amharic-name">ጠላ</h3>
+          <p data-lang="en">A home-style barley beer fermented with gesho leaves, which give it its signature earthy bitterness. Lower in alcohol than Areki and traditionally shared from a communal jug.</p>
+          <p data-lang="am">በጌሾ ቅጠል የተጣፈ የቤት ውስጥ ገብስ ቢራ፣ ልዩ መራራ ጣዕሙን የሚሰጠው ጌሾ ነው። ከአረቂ ያነሰ አልኮል የያዘ፣ በባህል ከጋራ ማድጋ የሚካፈል።</p>
+          <div class="tag-row">
+            <span class="tag" data-lang="en">Naturally fermented</span><span class="tag" data-lang="am">በተፈጥሮ የቦካ</span>
+            <span class="tag" data-lang="en">Gesho-flavored</span><span class="tag" data-lang="am">በጌሾ የተጣፈ</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="leaf-divider" style="margin-top:60px;">
+      <span class="line"></span>
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2c5 4 8 9 8 13a8 8 0 0 1-16 0c0-4 3-9 8-13Z"/></svg>
+      <span class="line"></span>
+    </div>
+
+    <div style="max-width:640px;margin:36px auto 0;text-align:center;">
+      <h2 class="section-title" style="margin-bottom:14px;"><span data-lang="en">Ordering</span><span data-lang="am">ማዘዝ</span></h2>
+      <p data-lang="en">Areki and Tella are available by the bottle, jug, or in bulk for events. Reach out through our contact page to place an order or ask about availability.</p>
+      <p data-lang="am">አረቂና ጠላ በጠርሙስ፣ በማድጋ ወይም በብዛት ለበዓላት ይገኛሉ። ትዕዛዝ ለመስጠት ወይም ስለ ተገኝነት ለመጠየቅ በአግኙን ገፅ ያግኙን።</p>
+      <br>
+      <a href="#" data-nav="contact" class="btn btn-primary nav-link"><span data-lang="en">Contact us to order</span><span data-lang="am">ለማዘዝ ያግኙን</span></a>
+    </div>
+    <div class="leaf-divider" style="margin:60px 0 40px;">
+      <span class="line"></span>
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2c5 4 8 9 8 13a8 8 0 0 1-16 0c0-4 3-9 8-13Z"/></svg>
+      <span class="line"></span>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="eyebrow" style="text-align:center;"><span data-lang="en">Our story</span><span data-lang="am">ታሪካችን</span></div>
+    <h2 class="section-title"><span data-lang="en">Made the way it's always been made.</span><span data-lang="am">ሁልጊዜም እንደተዘጋጀው ተዘጋጅቷል።</span></h2>
+    <div class="split" style="margin-top:44px;">
+      <div>
+        <h2><span data-lang="en">Rooted in tradition</span><span data-lang="am">በባህል የተመሠረተ</span></h2>
+        <p data-lang="en">Areki started as a way to keep a family recipe alive — the same fermentation and distillation methods used for generations to make Areki and Tella at home. We haven't changed the process; we've just made it possible to share it with more people.</p>
+        <p data-lang="am">አረቂ የተጀመረው የቤተሰብ የምግብ አዘገጃጀት ለማስቀጠል ነው — ለብዙ ትውልዶች በቤት ውስጥ አረቂና ጠላ ለማዘጋጀት ጥቅም ላይ የዋለውን ተመሳሳይ የመፍላትና የመጥመቅ ዘዴ በመጠቀም። ሂደቱን አልቀየርንም፤ ለብዙ ሰዎች ለማካፈል አድርገነዋል እንጂ።</p>
+        <div class="quote-block">
+          <span data-lang="en">"Every batch takes days, not minutes. That's the point."</span>
+          <span data-lang="am">"እያንዳንዱ ዙር ቀናትን ይወስዳል፣ ደቂቃዎችን አይደለም። ይህ ነው ዋናው ነጥብ።"</span>
+        </div>
+      </div>
+      <div class="hero-art">
+        <svg viewBox="0 0 320 300" xmlns="http://www.w3.org/2000/svg">
+          <ellipse cx="160" cy="280" rx="120" ry="14" fill="#00000018"/>
+          <path d="M100 40c-30 20-46 50-46 84a56 56 0 0 0 112 0c0-34-16-64-46-84a26 26 0 0 1-20 0Z" fill="#A8551E" opacity="0.9"/>
+          <path d="M220 60h44l10 34-12 14v98a14 14 0 0 1-14 14h-22a14 14 0 0 1-14-14V108l-12-14 10-34Z" fill="#C9972B" opacity="0.85"/>
+        </svg>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="light-section" style="background:var(--parchment);color:var(--coffee);">
+  <div class="wrap">
+    <h2 class="section-title"><span data-lang="en">What we stand for</span><span data-lang="am">የምንቆምላቸው እሴቶች</span></h2>
+    <div class="values-grid">
+      <div class="value-card">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 2c5 4 8 9 8 13a8 8 0 0 1-16 0c0-4 3-9 8-13Z"/></svg>
+        <h4 data-lang="en">Natural ingredients</h4><h4 data-lang="am">ተፈጥሯዊ ግብዓት</h4>
+        <p data-lang="en">Grain, gesho leaves, and water — nothing artificial goes into an Areki bottle or Tella jug.</p>
+        <p data-lang="am">እህል፣ ጌሾ እና ውሃ ብቻ — ወደ አረቂ ጠርሙስ ወይም ጠላ ማድጋ ምንም ሰው ሰራሽ ነገር አይገባም።</p>
+      </div>
+      <div class="value-card">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
+        <h4 data-lang="en">No rushing</h4><h4 data-lang="am">ያለ ችኮላ</h4>
+        <p data-lang="en">Fermentation and distillation take the time they take. We don't speed it up.</p>
+        <p data-lang="am">መፍላትና መጥመቅ የሚወስዱትን ጊዜ ይወስዳሉ። አናፋጥነውም።</p>
+      </div>
+      <div class="value-card">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M17 20a5 5 0 0 0-10 0"/><circle cx="12" cy="10" r="4"/></svg>
+        <h4 data-lang="en">Made to be shared</h4><h4 data-lang="am">ለመጋራት የተዘጋጀ</h4>
+        <p data-lang="en">Both drinks are meant for gathering — around a table, at a holiday, with family.</p>
+        <p data-lang="am">ሁለቱም መጠጦች ለስብሰባ የተዘጋጁ ናቸው — በጠረጴዛ ዙሪያ፣ በበዓል፣ ከቤተሰብ ጋር።</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ================= CONTACT ================= -->
+<main id="page-contact" class="page">
+
+<section class="hero compact">
+  <div class="wrap">
+    <div class="eyebrow"><span data-lang="en">Get in touch</span><span data-lang="am">ያግኙን</span></div>
+    <h1 style="font-size:clamp(2rem,4vw,2.8rem);"><span data-lang="en">Order Areki or Tella</span><span data-lang="am">አረቂ ወይም ጠላ ያዘዙ</span></h1>
+    <p class="lead" data-lang="en">Whether it's a bottle for tonight or a bulk order for a wedding, reach out and we'll sort out the details.</p>
+    <p class="lead" data-lang="am">ለዛሬ ማታ ጠርሙስ ብትፈልጉ ወይም ለሰርግ በብዛት ማዘዝ ብትፈልጉ፣ ያግኙን እና ዝርዝሩን እንይዛለን።</p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="contact-grid">
+      <div>
+        <div class="info-card">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 5h18v14H3z"/><path d="m3 6 9 7 9-7"/></svg>
+          <div>
+            <h4 data-lang="en">Email</h4><h4 data-lang="am">ኢሜይል</h4>
+            <p>hello@areki.et</p>
+          </div>
+        </div>
+        <div class="info-card">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3-8.7A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .3 2 .6 2.9a2 2 0 0 1-.5 2.1L8 9.9a16 16 0 0 0 6 6l1.2-1.2a2 2 0 0 1 2.1-.5c.9.3 1.9.5 2.9.6a2 2 0 0 1 1.8 2Z"/></svg>
+          <div>
+            <h4 data-lang="en">Phone</h4><h4 data-lang="am">ስልክ</h4>
+            <p>+251 91 234 5678</p>
+          </div>
+        </div>
+        <div class="info-card">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 21s7-6.5 7-12a7 7 0 1 0-14 0c0 5.5 7 12 7 12Z"/><circle cx="12" cy="9" r="2.5"/></svg>
+          <div>
+            <h4 data-lang="en">Location</h4><h4 data-lang="am">አድራሻ</h4>
+            <p data-lang="en">Addis Ababa, Ethiopia</p>
+            <p data-lang="am">አዲስ አበባ፣ ኢትዮጵያ</p>
+          </div>
+        </div>
+        <div class="info-card">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
+          <div>
+            <h4 data-lang="en">Hours</h4><h4 data-lang="am">የስራ ሰዓት</h4>
+            <p data-lang="en">Mon – Sat, 9:00 – 19:00</p>
+            <p data-lang="am">ሰኞ – ቅዳሜ፣ 9:00 – 19:00</p>
+          </div>
+        </div>
+      </div>
+
+      <form class="contact-form" onsubmit="event.preventDefault(); document.getElementById('form-confirm').style.display='block'; this.reset();">
+        <div>
+          <label for="name" data-lang="en">Name</label>
+          <label for="name" data-lang="am">ስም</label>
+          <input type="text" id="name" name="name" required>
+        </div>
+        <div>
+          <label for="email" data-lang="en">Email</label>
+          <label for="email" data-lang="am">ኢሜይል</label>
+          <input type="email" id="email" name="email" required>
+        </div>
+        <div>
+          <label for="order" data-lang="en">What would you like to order?</label>
+          <label for="order" data-lang="am">ምን ማዘዝ ይፈልጋሉ?</label>
+          <input type="text" id="order" name="order" placeholder="e.g. 2 bottles of Areki, 1 jug of Tella">
+        </div>
+        <div>
+          <label for="message" data-lang="en">Message</label>
+          <label for="message" data-lang="am">መልዕክት</label>
+          <textarea id="message" name="message"></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary" style="border-color:var(--clay);background:var(--clay);color:var(--cream-ink);">
+          <span data-lang="en">Send message</span><span data-lang="am">መልዕክት ላክ</span>
+        </button>
+        <p id="form-confirm" class="form-note" style="display:none;">
+          <span data-lang="en">Thanks — this is a demo form and isn't connected yet. Wire it up to email or a form service when the site goes live.</span>
+          <span data-lang="am">አመሰግናለሁ — ይህ የማሳያ ቅፅ ነው፣ እስካሁን አልተገናኘም። ድህረ ገፁ ሲጀመር ከኢሜይል ወይም ከቅፅ አገልግሎት ጋር ያገናኙት።</span>
+        </p>
+      </form>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-inner">
+      <div class="footer-brand"><span data-lang="en">Areki</span><span data-lang="am">አረቂ</span></div>
+      <nav>
+        <a href="#" data-nav="home" class="nav-link"><span data-lang="en">Home</span><span data-lang="am">መነሻ</span></a>
+        <a href="#" data-nav="products" class="nav-link"><span data-lang="en">Products &amp; About</span><span data-lang="am">ምርቶች እና ስለ እኛ</span></a>
+        <a href="#" data-nav="contact" class="nav-link"><span data-lang="en">Contact</span><span data-lang="am">አግኙን</span></a>
+      </nav>
+    </div>
+    <div class="bottom">
+      <span data-lang="en">© 2026 Areki. Traditional Ethiopian beverages, made with care. Please enjoy responsibly.</span>
+      <span data-lang="am">© 2026 አረቂ። ባህላዊ የኢትዮጵያ መጠጦች በጥንቃቄ የተዘጋጁ። እባክዎ በኃላፊነት ይጠቀሙ።</span>
+      <br>
+      <span>Developed by Yehenew Enawgaw &nbsp;|&nbsp; 0965392340 &nbsp;|&nbsp; yehenewenawgaw777@gmail.com</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  var header = document.querySelector('.site-header');
+  var menuBtn = document.querySelector('.menu-btn');
+  if (menuBtn) {
+    menuBtn.addEventListener('click', function () { header.classList.toggle('open'); });
+  }
+
+  function goToPage(name) {
+    document.querySelectorAll('.page').forEach(function (p) { p.classList.remove('active-page'); });
+    document.getElementById('page-' + name).classList.add('active-page');
+    document.querySelectorAll('.nav-link[data-nav]').forEach(function (l) {
+      l.classList.toggle('active', l.getAttribute('data-nav') === name && l.closest('nav'));
+    });
+    window.scrollTo(0, 0);
+    header.classList.remove('open');
+  }
+
+  document.querySelectorAll('[data-nav]').forEach(function (el) {
+    el.addEventListener('click', function (e) {
+      e.preventDefault();
+      goToPage(el.getAttribute('data-nav'));
+    });
+  });
+
+  var langButtons = document.querySelectorAll('.lang-toggle button');
+  function setLang(lang) {
+    document.body.classList.toggle('lang-am', lang === 'am');
+    langButtons.forEach(function (b) { b.classList.toggle('active', b.getAttribute('data-set-lang') === lang); });
+  }
+  langButtons.forEach(function (btn) {
+    btn.addEventListener('click', function () { setLang(btn.getAttribute('data-set-lang')); });
+  });
+  setLang('en');
+});
+</script>
+</body>
+</html>
